@@ -1,3 +1,6 @@
+# Movie Trailer Website
+This is a project for Udacity's Nanodegree program.
+
 ## REST APIs
 
 One thing I want to practice here is to build products with a separation between the backend and the frontend. For that I want to use AngularJS for communicating with a Python REST API. For the Python API I'm using Django.
