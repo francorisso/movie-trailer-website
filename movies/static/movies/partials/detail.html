@@ -1,0 +1,14 @@
+<ol class="breadcrumb">
+  <li><a href="/">Home</a></li>
+  <li class="active">{{ movie.title }}</li>
+</ol>
+<div class="row">
+	<div class="col-xs-12">
+		<iframe width="960" height="540" src="{{ trailer_url }}" frameborder="0" allowfullscreen></iframe>
+		<div class="caption">
+	        <h3>{{ movie.title }}</h3>
+	        <small>{{ movie.released_date | date:"MMMM dd, yyyy" }}</small>
+	        <p>{{ movie.description }}</p>
+	    </div>
+	</div>
+</div>

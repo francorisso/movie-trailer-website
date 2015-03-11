@@ -1,0 +1,17 @@
+<div id="grid">
+	<div class="col-xs-6 col-sm-3 movie-item" ng-repeat="movie in movies">
+		<a href="/movies/{{ movie.url }}" class="thumbnail">
+			<img ng-src="{{ movie.poster_image_url }}" />
+		</a>
+		<div class="caption">
+	        <h3>{{ movie.title }}</h3>
+	        <small>{{ movie.released_date | date:"MMMM dd, yyyy" }}</small>
+	        <p>{{ movie.story_line }}</p>
+	        <p>
+	        	<a href="/movies/{{ movie.url }}" class="btn btn-default" role="button">
+	        		<span class="glyphicon glyphicon-film"></span> Watch Trailer
+	        	</a>
+	       	</p>
+	    </div>
+	</div>
+</div>
