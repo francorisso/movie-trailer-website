@@ -11,7 +11,6 @@ from rest_framework.response import Response
 
 from oauth2_provider.ext.rest_framework import TokenHasReadWriteScope, TokenHasScope
 
-
 '''
 Basic index page with styles
 '''
@@ -26,7 +25,7 @@ def getJPEG(request):
     return HttpResponse(getImg.simple(), mimetype="image/jpg")
 
 '''
-REST API for movies
+API for deliver movies list
 '''
 class MovieList( generics.ListCreateAPIView ):
 	queryset = Movie.objects.all()
@@ -43,6 +42,9 @@ class MovieList( generics.ListCreateAPIView ):
 		
 		return Response( serializer.data )
 
+'''
+API for deliver details about a movie
+'''
 class MovieDetail( generics.RetrieveAPIView ):
 	queryset = Movie.objects.all()
 	serializer_class = MovieSerializer
