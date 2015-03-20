@@ -1,11 +1,12 @@
 (function(){
 
-	var app = angular.module("moviesController",[]);
+	var app = angular.module('moviesController',[]);
 	
 	app.controller('MoviesCtrl',[
-		"$scope", "$http", "$cookies", "$location",
-		function( $scope, $http, $cookies, $location ){
+		'$scope', '$http', '$cookies', '$location','$sce',
+		function( $scope, $http, $cookies, $location, $sce ){
 			$scope.page   = 0;
+			$scope.movie = {}; 
 			$scope.movies = [];
 
 			$(window).scroll(function(){
@@ -21,10 +22,10 @@
 				}
 
 				$scope.loading = true;
-				$http.get("/api/v1/movies",{ 
-					"params" :
+				$http.get('/api/v1/movies',{ 
+					'params' :
 					{
-						"page" 		 : $scope.page
+						'page' 		 : $scope.page
 					}
 				})
 				.success(function(data){
@@ -51,24 +52,24 @@
 					$scope.get();
 				}
 			};
-	}]);
+		}
+	]);
 
 	app.controller('MoviesDetailCtrl',[
-		"$scope", "$http", "$cookies", "$location", "$routeParams", "$sce",
-		function( $scope, $http, $cookies, $location, $routeParams, $sce ){
+		'$scope', '$http', '$cookies', '$location', '$stateParams', '$sce','$modal',
+		function( $scope, $http, $cookies, $location, $stateParams, $sce, $modal ){
 			$scope.movie = {};
 			$scope.trailer_url = '';
 			$scope.get = function(){
-				$http.get("/api/v1/movies/"+$routeParams.id,{ 
-					"params" :
+				$http.get('/api/v1/movies/'+$stateParams.id,{ 
+					'params' :
 					{
-						"access_token" 	 : $scope.accessToken 
+						'access_token' 	 : $scope.accessToken 
 					}
 				})
 				.success(function(data){
 					$scope.movie = data;
-					$scope.trailer_url = $sce.trustAsResourceUrl("https://www.youtube.com/embed/" + $scope.movie.trailer_youtube_url);
-					
+					$scope.trailer_url = $sce.trustAsResourceUrl('https://www.youtube.com/embed/' + $scope.movie.trailer_youtube_url);
 				})
 				.error(function(data){
 					console.error(data);

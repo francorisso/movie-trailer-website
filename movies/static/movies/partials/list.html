@@ -8,7 +8,13 @@
 	        <small>{{ movie.released_date | date:"MMMM dd, yyyy" }}</small>
 	        <p>{{ movie.story_line }}</p>
 	        <p>
-	        	<a href="/movies/{{ movie.url }}" class="btn btn-default" role="button">
+	        	<a 
+	        	href="/movies/{{ movie.url }}" 
+	        	class="btn btn-default" 
+	        	role="button" 
+	        	data-movie-id="{{ movie.url }}"
+	        	data-target="movie-details"
+	        	ng-click="openModal($event)">
 	        		<span class="glyphicon glyphicon-film"></span> Watch Trailer
 	        	</a>
 	       	</p>

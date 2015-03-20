@@ -1,14 +1,27 @@
-<ol class="breadcrumb">
-  <li><a href="/">Home</a></li>
-  <li class="active">{{ movie.title }}</li>
-</ol>
-<div class="row">
-	<div class="col-xs-12">
-		<iframe width="960" height="540" src="{{ trailer_url }}" frameborder="0" allowfullscreen></iframe>
-		<div class="caption">
-	        <h3>{{ movie.title }}</h3>
-	        <small>{{ movie.released_date | date:"MMMM dd, yyyy" }}</small>
-	        <p>{{ movie.description }}</p>
-	    </div>
+
+<div class="modal-header">
+	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	<h4 class="modal-title">{{ movie.title }}</h4>
+</div>
+<div class="modal-body">
+	<div class="row">
+		<div class="col-xs-12">
+			<p>
+				{{ movie.description }}
+			</p>
+			<ul>
+				<li>
+					<strong>Released:</strong> {{ movie.released_date | date:"MMMM dd, yyyy" }}
+				</li>
+			</ul>
+		</div>
 	</div>
+	<div class="row">
+		<div class="col-xs-12">
+		    <iframe style="width:100%; height: auto;" src="{{ trailer_url }}" frameborder="0" allowfullscreen></iframe>
+		</div>
+	</div>
+</div>
+<div class="modal-footer">
+	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 </div>
