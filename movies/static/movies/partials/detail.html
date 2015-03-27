@@ -1,27 +1,30 @@
-
 <div class="modal-header">
-	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	<button type="button" class="close" ng-click="closeModal()">
+		<span aria-hidden="true">&times;</span>
+	</button>
 	<h4 class="modal-title">{{ movie.title }}</h4>
 </div>
 <div class="modal-body">
 	<div class="row">
-		<div class="col-xs-12">
-			<p>
-				{{ movie.description }}
-			</p>
-			<ul>
-				<li>
-					<strong>Released:</strong> {{ movie.released_date | date:"MMMM dd, yyyy" }}
-				</li>
-			</ul>
+		<div class="col-md-8 col-xs-12">
+		    <iframe style="width:600px; height: 360px;" src="{{ trailer_url }}" frameborder="0" allowfullscreen></iframe>
 		</div>
-	</div>
-	<div class="row">
-		<div class="col-xs-12">
-		    <iframe style="width:100%; height: auto;" src="{{ trailer_url }}" frameborder="0" allowfullscreen></iframe>
+		<div class="col-md-4 col-xs-12 mv-col-right">
+			<div class="mv-movie-desc">
+  				{{ movie.description }}
+  			</div>
+			<ul class="list-group">
+				<li class="list-group-item"><i class="glyphicon glyphicon-calendar"></i> {{ movie.released_date | date:"MMMM dd, yyyy" }}</li>
+			</ul>
+			<div class="panel panel-success panel-genres">
+				<div class="panel-heading">Genres</div>
+				<div class="panel-body">
+					<a href="/genre/{{ genre.url }}" class="btn btn-primary mv-genre-item" ng-repeat="genre in movie.genres">{{ genre.name }}</a>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
 <div class="modal-footer">
-	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	<button type="button" class="btn btn-default" ng-click="closeModal()">Close</button>
 </div>

@@ -2,44 +2,60 @@
 
 	var app = angular.module('moviesTrailersApp',[
 		'ngCookies',
-		'moviesController', 
+		'moviesController',
 		'ui.bootstrap',
 		'ui.router',
-		'ct.ui.router.extras'
+		'ct.ui.router.extras',
+		'ct.ui.router.extras.sticky'
 	]);
 
-	app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', 
-	function ($stateProvider, $urlRouterProvider, $locationProvider) { 
+	app.config(
+	function ($stateProvider, $urlRouterProvider, $locationProvider, $stickyStateProvider) {
 		$locationProvider.html5Mode(true);
-		
+
 		$urlRouterProvider.otherwise('/');
 
 		$stateProvider
 		.state('movies', {
 			url: '/',
 			name: 'top',
+			sticky: true,
 			views: {
-				'app@': {
+				'app': {
 					templateUrl: '/static/movies/partials/list.html',
 					controller: 'MoviesCtrl'
 				},
 			}
-			
+		})
+		.state('genres', {
+			url: '/genres/:genre_url',
+			name: 'genres',
+			views: {
+				'app': {
+					templateUrl: '/static/movies/partials/list.html',
+					controller: 'MoviesCtrl'
+				},
+			}
 		})
 		.state('modal', {
 			url: '/movies/:id',
 			name: 'modal',
-			abstract: true,
-  			sticky: true,
-  			onEnter: ['$stateParams', '$state', '$modal', 
-			function($stateParams, $state, $modal) {
-        		$modal.open({
-        			templateUrl: '/static/movies/partials/detail.html',
-        			controller: 'MoviesDetailCtrl'
-        		});
-        	}]
+			sticky: true,
+			deepStateRedirect: true,
+			template: '<div ui-view></div>',
+			onEnter: showModal
 		});
-		
-	}]);
+	});
+
+
+	function showModal($modal, $previousState) {
+      $previousState.memo("modalInvoker"); // remember the previous state with memoName "modalInvoker"
+	  $modal.open({
+        templateUrl:'/static/movies/partials/detail.html',
+        backdrop: 'static',
+        controller: 'MoviesDetailCtrl',
+        windowClass: 'modal-detail'
+      });
+    }
 
 })();

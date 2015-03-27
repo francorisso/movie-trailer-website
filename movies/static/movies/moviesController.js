@@ -1,12 +1,11 @@
 (function(){
 
 	var app = angular.module('moviesController',[]);
-	
-	app.controller('MoviesCtrl',[
-		'$scope', '$http', '$cookies', '$location','$sce',
-		function( $scope, $http, $cookies, $location, $sce ){
+
+	app.controller('MoviesCtrl',
+		function( $scope, $http, $cookies, $location, $sce, $stateParams ){
 			$scope.page   = 0;
-			$scope.movie = {}; 
+			$scope.movie = {};
 			$scope.movies = [];
 
 			$(window).scroll(function(){
@@ -22,10 +21,12 @@
 				}
 
 				$scope.loading = true;
-				$http.get('/api/v1/movies',{ 
+				$scope.genre_name = $stateParams.genre_name;
+				$http.get('/api/v1/movies',{
 					'params' :
 					{
-						'page' 		 : $scope.page
+						'page' 		: $scope.page,
+						'genre'		: $scope.genre_name
 					}
 				})
 				.success(function(data){
@@ -53,18 +54,26 @@
 				}
 			};
 		}
-	]);
+	);
 
-	app.controller('MoviesDetailCtrl',[
-		'$scope', '$http', '$cookies', '$location', '$stateParams', '$sce','$modal',
-		function( $scope, $http, $cookies, $location, $stateParams, $sce, $modal ){
+	app.controller('MoviesDetailCtrl',
+		function( $modalInstance, $scope, $http,
+			$cookies, $location, $stateParams,
+			$sce, $modal, $previousState
+		){
 			$scope.movie = {};
 			$scope.trailer_url = '';
+
+			$scope.closeModal = function(){
+				$modalInstance.dismiss('close');
+				$previousState.go('modalInvoker');
+			};
+
 			$scope.get = function(){
-				$http.get('/api/v1/movies/'+$stateParams.id,{ 
+				$http.get('/api/v1/movies/' + $stateParams.id,{
 					'params' :
 					{
-						'access_token' 	 : $scope.accessToken 
+						'access_token' 	 : $scope.accessToken
 					}
 				})
 				.success(function(data){
@@ -76,6 +85,7 @@
 				});
 			};
 			$scope.get();
-	}]);
+		}
+	);
 
 })();

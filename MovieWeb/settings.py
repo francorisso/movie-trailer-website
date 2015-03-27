@@ -38,7 +38,6 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'movies',
     'rest_framework',
-    'oauth2_provider',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -85,8 +84,8 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
-MEDIA_ROOT = '/Users/macbookpro/Developments/udacity/nanodegree_fullstack_dev/MovieWeb/'
-MEDIA_URL = 'http://127.0.0.1:8000/'
+MEDIA_ROOT = '/public/'
+MEDIA_URL = 'http://127.0.0.1:4567/'
 
 STATIC_URL = '/static/'
 

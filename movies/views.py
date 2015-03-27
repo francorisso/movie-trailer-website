@@ -9,8 +9,6 @@ from rest_framework import viewsets, routers
 from rest_framework import permissions
 from rest_framework.response import Response
 
-from oauth2_provider.ext.rest_framework import TokenHasReadWriteScope, TokenHasScope
-
 '''
 Basic index page with styles
 '''
@@ -50,7 +48,7 @@ class MovieDetail( generics.RetrieveAPIView ):
 	serializer_class = MovieSerializer
 
 	def retrieve(self, request, title_url):
-		queryset   = Movie.objects.get( url = title_url )
-		serializer = MovieSerializer( queryset )
+		queryset   	= Movie.objects.get( url = title_url )
+		serializer 	= MovieSerializer( queryset )
 		return Response( serializer.data )
 

@@ -5,3 +5,19 @@
 .movie-item{
 	height: 500px;
 }
+
+.modal-detail .modal-dialog{
+	width: 960px;
+}
+
+.mv-col-right .panel-genres .panel-body a.mv-genre-item{
+	margin: 0 10px 10px 0;
+}
+
+.mv-col-right .mv-movie-desc{
+	padding: 0 0 20px 0;
+}
+
+.nopadding{
+	padding: 0 !important;
+}

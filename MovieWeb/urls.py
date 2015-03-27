@@ -11,8 +11,6 @@ urlpatterns = patterns('',
 
 	url(r'^api/v1/movies/?', include('movies.urls', namespace="movies")),
 
-    url(r'^o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
-
     url(r'^admin/', include(admin.site.urls)),
 
     url(r'^/?', views.index, name="index"),
