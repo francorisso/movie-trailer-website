@@ -10,6 +10,13 @@
 	width: 960px;
 }
 
+.modal-backdrop {
+	position: fixed;
+	background-color: #000;
+	width: 100%;
+	height: 100%;
+}
+
 .mv-col-right .panel-genres .panel-body a.mv-genre-item{
 	margin: 0 10px 10px 0;
 }

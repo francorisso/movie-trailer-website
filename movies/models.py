@@ -1,5 +1,5 @@
 from django.db import models
-from datetime import datetime  
+from datetime import datetime
 import urllib
 import os
 from django.core.files import File
@@ -27,12 +27,12 @@ class Movie( models.Model ):
 	trailer_youtube_url = models.CharField(max_length=200)
 	released_date		= models.DateField()
 	created_date		= models.DateTimeField(
-							auto_now=False, 
-							auto_now_add=True, 
+							auto_now=False,
+							auto_now_add=True,
 							default=datetime.now())
 	updated_date		= models.DateTimeField(
-							auto_now=True, 
-							auto_now_add=True, 
+							auto_now=True,
+							auto_now_add=True,
 							default=datetime.now())
 
 	# relation with foreign keys
@@ -53,7 +53,7 @@ class Movie( models.Model ):
 	def save(self, *args, **kwargs):
 		self.get_remote_image()
 		super(Movie, self).save(*args, **kwargs)
-		
+
 
 	@staticmethod
 	def mapFromMovieDbOrg( field ):
@@ -80,7 +80,7 @@ class Movie( models.Model ):
 			fieldMapped = Movie.mapFromMovieDbOrg(field)
 			if(fieldMapped==False):
 				continue
-			
+
 			setattr(movie, fieldMapped, value)
 
 		return movie

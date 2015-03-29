@@ -62,8 +62,8 @@ DATABASES = {
     'default': {
         'ENGINE'    : 'django.db.backends.mysql',
         'NAME'      : 'MoviesTrailers',
-        'USER'      : 'root', 
-        'PASSWORD'  : 'root', 
+        'USER'      : 'root',
+        'PASSWORD'  : 'root',
         'HOST'      : 'localhost',
     }
 }

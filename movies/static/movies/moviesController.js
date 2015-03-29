@@ -8,10 +8,14 @@
 			$scope.movie = {};
 			$scope.movies = [];
 			$scope.genres = [];
-			$scope.genreUrl = $stateParams.genre_url;
+			$scope.genreUrl = typeof $stateParams.genre_url==='undefined'? '' : $stateParams.genre_url;
 
 			$scope.genreChange = function(){
-				$location.url('/genres/' + $scope.genreUrl);
+				if( $scope.genreUrl.length>0 ){
+					$location.url('/genres/' + $scope.genreUrl);
+				} else {
+					$location.url('/');
+				}
 			};
 
 			$scope.reset = function(){
@@ -47,7 +51,14 @@
 			$scope.genresGet = function(){
 				$http.get('/api/v1/movies/genres',{})
 				.success(function(data){
-					$scope.genres = data;
+					$scope.genres.push({
+						name : 'All',
+						url  : ''
+					});
+					$scope.genres = $scope.genres.concat(data);
+					if( $scope.genreUrl.length==0 ){
+						$scope.genreUrl = $scope.genres[0].url;
+					}
 				});
 			};
 
