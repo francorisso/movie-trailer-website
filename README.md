@@ -1,4 +1,5 @@
 # Movie Trailer Website
+
 This is a project for Udacity's Nanodegree program.
 
 ## REST APIs
@@ -10,15 +11,14 @@ One thing I want to practice here is to build products with a separation between
 All the project is presented in a Django module called "movies" (as the folder who holds the data). There you can find all the code, even the frontend code.
 
 ## INSTALL
-https://pip.pypa.io/en/latest/installing.html
 
-1. Requirements
+### Requirements
 * Unix server (OSX or Linux)
 * Root access
 * Python installed
 * MySQL installed
 
-2. Install dependencies: Check that the file install-dependencies.sh has permissions to execute and then run:
+### Install dependencies: Check that the file install-dependencies.sh has permissions to execute and then run:
 
 > ./install-dependencies.sh
 
@@ -38,8 +38,8 @@ DATABASES = {
     'default': {
         'ENGINE'    : 'django.db.backends.mysql',
         'NAME'      : <database_name>,
-        'USER'      : <username>, 
-        'PASSWORD'  : <pass>, 
+        'USER'      : <username>,
+        'PASSWORD'  : <pass>,
         'HOST'      : <host>,
     }
 }
@@ -54,7 +54,7 @@ MEDIA_URL = 'http://127.0.0.1:8000/'
 > python manage.py makemigrations
 > python manage.py migrate
 
-6. For populate the database, I've created a django command that fetches movies from the themoviedb.org, copying images and trailers from the most popular ones, you can run this script as long as you want (limit 10K movies), please see /movies/management/commands/movies_add.py for details of my implementation and if you've any suggestion about this, the idea is run this as a cronjob. 
+6. For populate the database, I've created a django command that fetches movies from the themoviedb.org, copying images and trailers from the most popular ones, you can run this script as long as you want (limit 10K movies), please see /movies/management/commands/movies_add.py for details of my implementation and if you've any suggestion about this, the idea is run this as a cronjob.
 Back to the instructions, you can run:
 
 > python manage.py movies_add

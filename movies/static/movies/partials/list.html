@@ -1,4 +1,12 @@
-<div id="grid">
+<div class="row">
+  <select
+  name="genre"
+  ng-change="genreChange()"
+  ng-options="genre.url as genre.name for genre in genres"
+  ng-model="genreUrl">
+  </select>
+</div>
+<div id="grid" class="row">
 	<div class="col-xs-6 col-sm-3 movie-item" ng-repeat="movie in movies">
 		<a href="/movies/{{ movie.url }}" class="thumbnail">
 			<img ng-src="{{ movie.poster_image_url }}" />
@@ -8,10 +16,10 @@
 	        <small>{{ movie.released_date | date:"MMMM dd, yyyy" }}</small>
 	        <p>{{ movie.story_line }}</p>
 	        <p>
-	        	<a 
-	        	href="/movies/{{ movie.url }}" 
-	        	class="btn btn-default" 
-	        	role="button" 
+	        	<a
+	        	href="/movies/{{ movie.url }}"
+	        	class="btn btn-default"
+	        	role="button"
 	        	data-movie-id="{{ movie.url }}"
 	        	data-target="movie-details"
 	        	ng-click="openModal($event)">

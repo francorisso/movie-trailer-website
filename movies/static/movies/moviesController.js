@@ -7,13 +7,17 @@
 			$scope.page   = 0;
 			$scope.movie = {};
 			$scope.movies = [];
+			$scope.genres = [];
+			$scope.genreUrl = $stateParams.genre_url;
 
-			$(window).scroll(function(){
-				clearTimeout( $scope.paginate_timer );
-				$scope.paginate_timer = setTimeout(function(){
-					$scope.paginate();
-				},100);
-			});
+			$scope.genreChange = function(){
+				$location.url('/genres/' + $scope.genreUrl);
+			};
+
+			$scope.reset = function(){
+				$scope.movies = [];
+				$scope.page = 0;
+			};
 
 			$scope.get = function(){
 				if($scope.loading){
@@ -21,19 +25,15 @@
 				}
 
 				$scope.loading = true;
-				$scope.genre_name = $stateParams.genre_name;
 				$http.get('/api/v1/movies',{
 					'params' :
 					{
 						'page' 		: $scope.page,
-						'genre'		: $scope.genre_name
+						'genre_url'	: $scope.genreUrl
 					}
 				})
 				.success(function(data){
-					var newMovies = [];
-					for(var i=0; i<data.length; i++){
-						$scope.movies.push( data[i] );
-					}
+					$scope.movies = $scope.movies.concat(data);
 					$scope.loading = false;
 				})
 				.error(function(data){
@@ -42,6 +42,17 @@
 
 				$scope.page++;
 			};
+
+			//Set the genres
+			$scope.genresGet = function(){
+				$http.get('/api/v1/movies/genres',{})
+				.success(function(data){
+					$scope.genres = data;
+				});
+			};
+
+			// Init functions
+			$scope.genresGet();
 			$scope.get();
 
 			$scope.paginate_timer = 0;
@@ -53,6 +64,13 @@
 					$scope.get();
 				}
 			};
+
+			$(window).scroll(function(){
+				clearTimeout( $scope.paginate_timer );
+				$scope.paginate_timer = setTimeout(function(){
+					$scope.paginate();
+				},100);
+			});
 		}
 	);
 
@@ -84,6 +102,13 @@
 					console.error(data);
 				});
 			};
+
+			$scope.$on("$stateChangeStart", function(evt, toState) {
+	        	if (!toState.$$state().includes['modal']) {
+	            	$modalInstance.dismiss('close');
+	            }
+	        });
+
 			$scope.get();
 		}
 	);

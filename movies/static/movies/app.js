@@ -30,6 +30,7 @@
 		.state('genres', {
 			url: '/genres/:genre_url',
 			name: 'genres',
+			sticky: true,
 			views: {
 				'app': {
 					templateUrl: '/static/movies/partials/list.html',
