@@ -22,7 +22,7 @@ All the project is presented in a Django module called "movies" (as the folder w
 
 > ./install-dependencies.sh
 
-** This will install the modules:**
+**This will install the modules:**
 - pip
 - django
 - djangorestframework
@@ -70,7 +70,7 @@ This will start a server by default in http://127.0.0.1:8000, I've tested the co
 Now go to your browser and type the address you choose and is ready.
 
 
-## PROJECT REQUIREMENTS
+## UDACITY'S REQUIREMENTS
 
 ### Present required content
 
