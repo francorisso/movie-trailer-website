@@ -18,11 +18,11 @@ All the project is presented in a Django module called "movies" (as the folder w
 * Python installed
 * MySQL installed
 
-### Install dependencies: Check that the file install-dependencies.sh has permissions to execute and then run:
+**Install dependencies: Check that the file install-dependencies.sh has permissions to execute and then run:**
 
 > ./install-dependencies.sh
 
-This will install the modules:
+** This will install the modules:**
 - pip
 - django
 - djangorestframework
@@ -32,7 +32,7 @@ This will install the modules:
 - slugify
 - requests
 
-3. You'll have to change the information in /MovieWeb/settings.py
+**You'll have to change the information in /MovieWeb/settings.py**
 
 DATABASES = {
     'default': {
@@ -44,27 +44,27 @@ DATABASES = {
     }
 }
 
-4. ...and these paths in the same file (MEDIA_URL is the server you're running):
+**...and these paths in the same file (MEDIA_URL is the server you're running):**
 
 MEDIA_ROOT = '/Users/macbookpro/Developments/udacity/nanodegree_fullstack_dev/MovieWeb/'
 MEDIA_URL = 'http://127.0.0.1:8000/'
 
-5. Now, for creating the database, you've to call from the command line:
+**Now, for creating the database, you've to call from the command line:**
 
 > python manage.py makemigrations
 > python manage.py migrate
 
-6. For populate the database, I've created a django command that fetches movies from the themoviedb.org, copying images and trailers from the most popular ones, you can run this script as long as you want (limit 10K movies), please see /movies/management/commands/movies_add.py for details of my implementation and if you've any suggestion about this, the idea is run this as a cronjob.
+**For populate the database**, I've created a django command that fetches movies from the themoviedb.org, copying images and trailers from the most popular ones, you can run this script as long as you want (limit 10K movies), please see /movies/management/commands/movies_add.py for details of my implementation and if you've any suggestion about this, the idea is run this as a cronjob.
 Back to the instructions, you can run:
 
 > python manage.py movies_add
 
 And this will populate the database.
 
-7. You can start a server from the root of the files, by typing in the command line:
+**You can start a server from the root of the files, by typing in the command line:**
 
-> python manage.py runserver [<address>] --settings=MovieWeb.settings
-> - <address> should be in format IP:post, example: 127.0.0.1:8000
+> python manage.py runserver [address] --settings=MovieWeb.settings
+> - **address** should be in format IP:post, example: 127.0.0.1:8000
 
 This will start a server by default in http://127.0.0.1:8000, I've tested the code there.
 Now go to your browser and type the address you choose and is ready.
